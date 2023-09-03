@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'pages/home.dart';
+import 'pages/bottom_navigation_bar.dart';
 import 'routes/app_pages.dart';
 import 'routes/routes.dart';
 
@@ -12,7 +12,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     Color primaryColor = HexColor('#0C78AE');
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
     // Create a ColorScheme based on the primary color for dark mode
     ColorScheme colorScheme = ColorScheme(
       primary: primaryColor,
-      secondary: primaryColor,
+      secondary: Colors.black87,
       surface: Colors.white, // Customize surface color
       background: Colors.black, // Customize background color
       error: Colors.red, // Customize error color
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
       onSurface: Colors.white, // Customize text color on surface
       onBackground: Colors.white, // Customize text color on background
       onError: Colors.white, // Customize text color on error
-      brightness: Brightness.light, // Set it to dark mode
+      brightness: Brightness.dark, // Set it to dark mode
     );
 
     // Use the colorScheme in your theme
@@ -43,7 +42,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       initialRoute: RouteName.splashScreen,
       getPages: AppPages.pages,
-      home: HomePage(),
+      home: BottomNavigationBarPage(),
     );
   }
 }

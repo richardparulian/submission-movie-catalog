@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ListMoviesPage extends StatelessWidget {
-  const ListMoviesPage({super.key});
+class FindPage extends StatelessWidget {
+  const FindPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +9,7 @@ class ListMoviesPage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.secondary,
       body: Container(
         child: Center(
-          child: Text("Movies Categorys", style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
+          child: Text("Find page", style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
         ),
       ),
     );

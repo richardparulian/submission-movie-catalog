@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_catalog/controller/c_home.dart';
 import '../controller/c_menu.dart';
+import '../controller/c_navigation.dart';
 import '../controller/c_public.dart';
 import 'component_home/list_all.dart';
 import 'component_home/list_movies.dart';
@@ -10,19 +10,18 @@ import 'component_home/list_tv.dart';
 class HomePage extends StatelessWidget {
   final PublicController cPublic = Get.put(PublicController());
   final MenusController cMenu = Get.put(MenusController());
-  final HomeController cHome = Get.put(HomeController());
+  final NavigationController cNavigation = Get.put(NavigationController());
 
   HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: cHome.currentIndexTopMenu.value,
+      initialIndex: cNavigation.currentIndexTopMenu.value,
       length: 3,
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           title: Image.asset(cPublic.splashImage.toString(), width: 70.0),
           centerTitle: false,
           actions: [
@@ -32,8 +31,7 @@ class HomePage extends StatelessWidget {
             )
           ],
           bottom: PreferredSize(
-            preferredSize:
-                Size.fromHeight(MediaQuery.of(context).size.height * 0.08),
+            preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.08),
             child: Align(
               alignment: Alignment.centerLeft,
               child: TabBar(
@@ -42,18 +40,19 @@ class HomePage extends StatelessWidget {
                 labelPadding: EdgeInsets.zero,
                 indicator: null,
                 indicatorColor: Colors.transparent,
+                splashBorderRadius: const BorderRadius.all(Radius.circular(50.0)),
                 onTap: (index) {
-                  cHome.changeIndexTopMenu(index);
+                  cNavigation.changeIndexTopMenu(index);
                 },
                 tabs: cMenu.topMenu.asMap().entries.map((entry) {
                   final index = entry.key;
                   final menu = entry.value;
 
                   return CustomTab(
-                      text: menu['label'],
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(50.0)),
-                      isIndex: index);
+                    text: menu['label'],
+                    borderRadius: const BorderRadius.all(Radius.circular(50.0)),
+                    isIndex: index,
+                  );
                 }).toList(),
               ),
             ),
@@ -61,7 +60,7 @@ class HomePage extends StatelessWidget {
         ),
         body: Obx(() {
           return IndexedStack(
-            index: cHome.currentIndexTopMenu.value,
+            index: cNavigation.currentIndexTopMenu.value,
             children: [
               for (int i = 0; i < 3; i++) buildTabContent(i),
             ],
@@ -86,7 +85,7 @@ class HomePage extends StatelessWidget {
 }
 
 class CustomTab extends StatelessWidget {
-  final HomeController cHome = Get.put(HomeController());
+  final NavigationController cNavigation = Get.put(NavigationController());
   final String text;
   final BorderRadiusGeometry borderRadius;
   final int isIndex;
@@ -104,9 +103,7 @@ class CustomTab extends StatelessWidget {
       return Container(
         height: 35.0,
         decoration: BoxDecoration(
-          color: isIndex == cHome.currentIndexTopMenu.value
-              ? Colors.white
-              : Colors.transparent,
+          color: isIndex == cNavigation.currentIndexTopMenu.value ? Colors.white : Colors.transparent,
           borderRadius: borderRadius,
         ),
         child: Tab(
@@ -115,9 +112,7 @@ class CustomTab extends StatelessWidget {
             child: Text(
               text,
               style: TextStyle(
-                  color: isIndex == cHome.currentIndexTopMenu.value
-                      ? Colors.black
-                      : Colors.white),
+                color: isIndex == cNavigation.currentIndexTopMenu.value ? Colors.black : Colors.white),
             ),
           ),
         ),
