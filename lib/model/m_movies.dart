@@ -22,7 +22,7 @@ class MovieResponse {
 }
 
 class Movie {
-  final bool adult;
+  final bool? adult;
   final String? backdropPath;
   final int id;
   final String? name;
@@ -32,7 +32,7 @@ class Movie {
   final String? posterPath;
   final String? title;
   final String? releaseDate;
-  final bool video;
+  final bool? video;
   final double voteAverage;
   final int voteCount;
   final List<int> genreIds;
@@ -41,7 +41,7 @@ class Movie {
   final double popularity;
 
   Movie({
-    required this.adult,
+    this.adult,
     this.backdropPath,
     required this.id,
     this.name,
@@ -51,7 +51,7 @@ class Movie {
     this.posterPath,
     this.title,
     this.releaseDate,
-    required this.video,
+    this.video,
     required this.voteAverage,
     required this.voteCount,
     required this.genreIds,
@@ -62,7 +62,7 @@ class Movie {
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
-      adult: json['adult'],
+      adult: json['adult'] != "" ? json['adult'] : "",
       backdropPath: json['backdrop_path'],
       id: json['id'],
       name: json['name'],
@@ -72,7 +72,7 @@ class Movie {
       posterPath: json['poster_path'],
       title: json['title'],
       releaseDate: json['release_date'],
-      video: json['video'],
+      video: json['video'] != "" ? json['video'] : "",
       voteAverage: json['vote_average'].toDouble(),
       voteCount: json['vote_count'],
       genreIds: List<int>.from(json['genre_ids']),

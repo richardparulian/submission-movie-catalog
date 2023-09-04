@@ -6,5 +6,8 @@ class ApiEndPoints {
 
 class AuthEndPoints {
   final String allTrending = '/trending/all/';
-  
+  final String moviesPopular = '/movie/popular';
+  final String moviesTopRated = '/movie/top_rated';
+  final String tvShowsPopular = '/tv/popular';
+  final String tvShowsTopRated = '/tv/top_rated';
 }
