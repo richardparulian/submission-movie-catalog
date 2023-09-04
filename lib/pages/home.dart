@@ -22,6 +22,7 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.secondary,
+          titleSpacing: 3.0,
           title: Image.asset(cPublic.splashImage.toString(), width: 70.0),
           centerTitle: false,
           actions: [
@@ -37,7 +38,7 @@ class HomePage extends StatelessWidget {
               child: TabBar(
                 tabAlignment: TabAlignment.start,
                 isScrollable: true,
-                labelPadding: EdgeInsets.zero,
+                labelPadding: const EdgeInsets.symmetric(horizontal: 3.0),
                 indicator: null,
                 indicatorColor: Colors.transparent,
                 splashBorderRadius: const BorderRadius.all(Radius.circular(50.0)),

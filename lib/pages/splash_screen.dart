@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_catalog/controller/c_public.dart';
@@ -13,7 +14,7 @@ class SplashScreenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<PublicController>(
       initState: (context) {
-        Timer(const Duration(seconds: 1), () {
+        Timer(const Duration(seconds: 2), () {
           Get.offAllNamed(RouteName.home);
         });
       },
@@ -23,7 +24,18 @@ class SplashScreenPage extends StatelessWidget {
           body: Center(
             child: Hero(
                 tag: "Splash Screen",
-                child: Image.asset(cPublic.splashImage.toString(), width: 200.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(cPublic.splashImage.toString(), width: 200.0),
+                    const SizedBox(height: 20.0),
+                    const CupertinoActivityIndicator(
+                      radius: 15.0, 
+                      animating: true, 
+                    ),
+                  ],
+                ),
               ),
           ),
         );
