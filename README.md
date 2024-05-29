@@ -1,6 +1,6 @@
-# movie_catalog
+# Movie Catalog
 
-Tugas unjuk keterampilan.
+Submisson for show off skills 
 
 ## Getting Started
 
